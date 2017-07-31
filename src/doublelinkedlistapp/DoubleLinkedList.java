@@ -73,6 +73,8 @@ public class DoubleLinkedList
             // Change new front neighbour
             start = neighbour;
         }
+        // Display all neighbours after added
+        displayAll();
         // Increment size by 1
         size++;
     }
@@ -96,6 +98,8 @@ public class DoubleLinkedList
             // Change new end neighbour
             end = neighbour;
         }
+        // Display all neighbours after added
+        displayAll();
         // Increment size by 1
         size++;
     }
@@ -103,6 +107,7 @@ public class DoubleLinkedList
     // Insert new neighbour if live between existing neighbours at this position
     public void addNeighbourInBetween(String name, int pos)
     {
+        found = 0;
         // Previous neighbour and next neighbour are null to initialise
         NeighbourNode neighbour = new NeighbourNode(name, 0, null, null);
         // If user selected the first position, set this neighbour
@@ -142,10 +147,18 @@ public class DoubleLinkedList
                     neighbour.setNext(tempting);
                     // Set tempting's previous neighbour as new neighbour
                     tempting.setPrevious(neighbour);
+                    found++;
                 }
                 // Move on to the next neighbour
                 pointer = pointer.getNextNeighbour();
             }
+            // If there are no position found, display this message
+            if(found == 0)
+            {
+                System.out.println("Unsuccessfully added. Please check size of neighbour.");
+            }
+            // Display all neighbours after added
+            displayAll();
             // Increment size by 1
             size++;
         }
@@ -154,6 +167,7 @@ public class DoubleLinkedList
     // Delete the neighbour at this position due to destruction or empty house
     public void deleteNeighbourAtPosition(int pos)
     {
+        found = 0;
         // If list is not empty, do this function
         if(!isEmpty())
         {
@@ -213,10 +227,16 @@ public class DoubleLinkedList
                         next.setPrevious(previous);
                         // Decrement size by 1
                         size--;
+                        found++;
                     }
 
                     // Set pointer to the next neighbour
                     pointer = pointer.getNextNeighbour();
+                }
+                // If there are no position found, display this message
+                if(found == 0)
+                {
+                    System.out.println("This neighbour has not existed or found.");
                 }
             }
         }
@@ -225,6 +245,8 @@ public class DoubleLinkedList
         {
             System.out.println("The street is empty.");
         }
+        // Display all neighbours after deleted
+        displayAll();
     }
     
     // Display only to this neighbour by position
@@ -264,6 +286,9 @@ public class DoubleLinkedList
     // Display all neighbours
     public void displayAll()
     {
+        // Display titles
+        System.out.println();
+        System.out.println("Displaying all neighbours");
         // If list is not empty, do this function
         if(!isEmpty())
         {
@@ -293,183 +318,233 @@ public class DoubleLinkedList
     // Select the neighbour's position to confirm change
     public void changeNeighbourDetail(int pos)
     {
-        // Do this function while choose is not selected in the option
-        do
+        boolean selected = false;
+        if(!isEmpty())
         {
-            // Choosing the options to change details by name, weeks or both.
-            // Otherwise, cancel change
-            System.out.println("Choice of changing details.");
-            System.out.println("(0) Cancel Change");
-            System.out.println("(1) Name of Owner");
-            System.out.println("(2) Number of Weeks on Staying");
-            System.out.println("(3) Both");
-            // Set choose as Scanner's object as integer
-            choose = scan.nextInt();
-            // Choose a selection for editing neighbour's details
-            switch(choose)
+            // Do this function while choose is not selected in the option
+            do
             {
-                // If choose is 0, exit this method
-                case 0:
-                    System.out.println("Cancelling change.");
-                    break;
-                // If choose is 1, change this neighbour's name
-                case 1:
-                    // Initialise found to 0
-                    found = 0;
-                    // Initialise the pointer as the start of the list
-                    NeighbourNode pointer = start;
-                    // Keep going until count reaches to size
-                    for(int count = 1; count <= size; count++)
-                    {
-                        // If count is equal to position, display this neighbour's old name
-                        if(count == pos)
-                        {
-                            System.out.println("This neighbour's old name: " + pointer.getName());
-                            // Increment found by 1
-                            found++;
-                        }
-                        // Set pointer as pointer's next neighbour
-                        pointer = pointer.getNextNeighbour();
-                    }
-                    // If position has been found, proceed to this step
-                    if(found > 0)
-                    {
-                        // Re-initialise pointer as starting neighbour
-                        pointer = start;
-                        // User inputs new name for this neighbour
-                        System.out.print("Enter new name of owner: ");
-                        // Initialise owner as user's input
-                        String owner = scan.next();
-                        // As it already been found, set the name for this neighbour
-                        // as its new name
+                // Display option for changing data
+                System.out.println(displayOption());
+                // Set choose as Scanner's object as integer
+                choose = handleInt();
+                // Choose a selection for editing neighbour's details
+                switch(choose)
+                {
+                    // If choose is 0, exit this method
+                    case 0:
+                        System.out.println("Cancelling change.");
+                        selected = true;
+                        break;
+                    // If choose is 1, change this neighbour's name
+                    case 1:
+                        // Initialise found to 0
+                        found = 0;
+                        // Initialise the pointer as the start of the list
+                        NeighbourNode pointer = start;
+                        // Keep going until count reaches to size
                         for(int count = 1; count <= size; count++)
                         {
+                            // If count is equal to position, display this neighbour's old name
                             if(count == pos)
                             {
-                                pointer.setName(owner);
-                                displayNeighbour(pos);
-                                //System.out.println("This neighbour's new name: " + pointer.getName());
+                                System.out.println("This neighbour's old name: " + pointer.getName());
+                                // Increment found by 1
+                                found++;
                             }
+                            // Set pointer as pointer's next neighbour
                             pointer = pointer.getNextNeighbour();
                         }
-                    }
-                    // If neighbour is not found, display this message
-                    else
-                    {
-                        System.out.println("This neighbour has not been existed or found.");
-                    }         
-                    break;
-                // If choose is 2, change this neighbour's duration of staying by weeks
-                case 2:
-                    // Initialise found to 0
-                    found = 0;
-                    // Initialise the pointer as the start of the list
-                    pointer = start;
-                    // Keep going until count reaches to size
-                    for(int count = 1; count <= size; count++)
-                    {
-                        // If count is equal to position, display this neighbour's old name
-                        if(count == pos)
+                        // If position has been found, proceed to this step
+                        if(found > 0)
                         {
-                            System.out.println("This neighbour's old duration of stay in weeks: " + pointer.getWeek());
-                            // Increment found by 1
-                            found++;
+                            // Re-initialise pointer as starting neighbour
+                            pointer = start;
+                            // User inputs new name for this neighbour
+                            System.out.print("Enter new name of owner: ");
+                            // Initialise owner as user's input
+                            String owner = scan.next();
+                            // As it already been found, set the name for this neighbour
+                            // as its new name
+                            for(int count = 1; count <= size; count++)
+                            {
+                                if(count == pos)
+                                {
+                                    pointer.setName(owner);
+                                    displayNeighbour(pos);
+                                    //System.out.println("This neighbour's new name: " + pointer.getName());
+                                }
+                                pointer = pointer.getNextNeighbour();
+                            }
                         }
-                        // Set pointer as pointer's next neighbour
-                        pointer = pointer.getNextNeighbour();
-                    }
-                    // If position has been found, proceed to this step
-                    if(found > 0)
-                    {
-                        // Re-initialise pointer as starting neighbour
+                        // If neighbour is not found, display this message
+                        else
+                        {
+                            System.out.println("This neighbour has not been existed or found.");
+                        }
+                        selected = true;
+                        break;
+                    // If choose is 2, change this neighbour's duration of staying by weeks
+                    case 2:
+                        // Initialise found to 0
+                        found = 0;
+                        // Initialise the pointer as the start of the list
                         pointer = start;
-                        // User inputs new weeks for this neighbour
-                        System.out.print("Enter current duration of stay in weeks: ");
-                        // Initialise week as user's input
-                        int week = scan.nextInt();
-                        // As it already been found, set the week for this neighbour
-                        // as its new week
+                        // Keep going until count reaches to size
                         for(int count = 1; count <= size; count++)
                         {
+                            // If count is equal to position, display this neighbour's old name
                             if(count == pos)
                             {
-                                pointer.setWeek(week);
-                                displayNeighbour(pos);
-                                //System.out.println("This neighbour's new name: " + pointer.getWeek());
+                                System.out.println("This neighbour's old duration of stay in weeks: " + pointer.getWeek());
+                                // Increment found by 1
+                                found++;
                             }
+                            // Set pointer as pointer's next neighbour
                             pointer = pointer.getNextNeighbour();
                         }
-                    }
-                    // If neighbour is not found, display this message
-                    else
-                    {
-                        System.out.println("This neighbour has not been existed or found.");
-                    }         
-                    break;
-                // If choose is 3, change this neighbour's name and weeks
-                case 3:
-                    // Initialise found to 0
-                    found = 0;
-                    // Initialise the pointer as the start of the list
-                    pointer = start;
-                    // Keep going until count reaches to size
-                    for(int count = 1; count <= size; count++)
-                    {
-                        // If count is equal to position, display this neighbour's old name
-                        if(count == pos)
+                        // If position has been found, proceed to this step
+                        if(found > 0)
                         {
-                            // Display this neighbour's old record
-                            System.out.println("Old Record for This Neighbour");
-                            System.out.println(pointer.printNeighbour());
-                            // Increment found by 1
-                            found++;
+                            // Re-initialise pointer as starting neighbour
+                            pointer = start;
+                            // User inputs new weeks for this neighbour
+                            System.out.print("Enter current duration of stay in weeks: ");
+                            // Initialise week as user's input
+                            int week = handleInt();
+                            // As it already been found, set the week for this neighbour
+                            // as its new week
+                            for(int count = 1; count <= size; count++)
+                            {
+                                if(count == pos)
+                                {
+                                    pointer.setWeek(week);
+                                    displayNeighbour(pos);
+                                    //System.out.println("This neighbour's new name: " + pointer.getWeek());
+                                }
+                                pointer = pointer.getNextNeighbour();
+                            }
                         }
-                        // Set pointer as pointer's next neighbour
-                        pointer = pointer.getNextNeighbour();
-                    }
-                    // If position has been found, proceed to this step
-                    if(found > 0)
-                    {
-                        // Re-initialise pointer as starting neighbour
+                        // If neighbour is not found, display this message
+                        else
+                        {
+                            System.out.println("This neighbour has not been existed or found.");
+                        }
+                        selected = true;
+                        break;
+                    // If choose is 3, change this neighbour's name and weeks
+                    case 3:
+                        // Initialise found to 0
+                        found = 0;
+                        // Initialise the pointer as the start of the list
                         pointer = start;
-                        // Neighbour's name
-                        // User inputs new name for this neighbour
-                        System.out.print("Enter new name of owner: ");
-                        // Initialise owner as user's input
-                        String owner = scan.next();
-                        // Neighbour's duration of stay
-                        // User inputs new weeks for this neighbour
-                        System.out.print("Enter current duration of stay in weeks: ");
-                        // Initialise week as user's input
-                        int week = scan.nextInt();
-                        // As it already been found, set the week for this neighbour
-                        // as its new week
+                        // Keep going until count reaches to size
                         for(int count = 1; count <= size; count++)
                         {
-                            // Change both details and display new details
+                            // If count is equal to position, display this neighbour's old name
                             if(count == pos)
                             {
-                                pointer.setName(owner);
-                                pointer.setWeek(week);
-                                displayNeighbour(pos);
-                                //System.out.println("New Record for This Neighbour");
-                                //System.out.println(pointer.printNeighbour());
+                                // Display this neighbour's old record
+                                System.out.println("Old Record for This Neighbour");
+                                System.out.println(pointer.printNeighbour());
+                                // Increment found by 1
+                                found++;
                             }
+                            // Set pointer as pointer's next neighbour
                             pointer = pointer.getNextNeighbour();
                         }
-                    }
-                    // If neighbour is not found, display this message
-                    else
-                    {
-                        System.out.println("This neighbour has not been existed or found.");
-                    }         
-                    break;
-                // Else, display invalid input message
-                default:
-                    System.out.println("Invalid input. Try again.");
-                    break; 
+                        // If position has been found, proceed to this step
+                        if(found > 0)
+                        {
+                            // Re-initialise pointer as starting neighbour
+                            pointer = start;
+                            // Neighbour's name
+                            // User inputs new name for this neighbour
+                            System.out.print("Enter new name of owner: ");
+                            // Initialise owner as user's input
+                            String owner = scan.next();
+                            // Neighbour's duration of stay
+                            // User inputs new weeks for this neighbour
+                            System.out.print("Enter current duration of stay in weeks: ");
+                            // Initialise week as user's input
+                            int week = handleInt();
+                            // As it already been found, set the week for this neighbour
+                            // as its new week
+                            for(int count = 1; count <= size; count++)
+                            {
+                                // Change both details and display new details
+                                if(count == pos)
+                                {
+                                    pointer.setName(owner);
+                                    pointer.setWeek(week);
+                                    displayNeighbour(pos);
+                                    //System.out.println("New Record for This Neighbour");
+                                    //System.out.println(pointer.printNeighbour());
+                                }
+                                pointer = pointer.getNextNeighbour();
+                            }
+                        }
+                        // If neighbour is not found, display this message
+                        else
+                        {
+                            System.out.println("This neighbour has not been existed or found.");
+                        }
+                        selected = true;
+                        break;
+                    // Else, display invalid input message
+                    default:
+                        System.out.println("Invalid input. Try again.");
+                        break; 
+                }
+            } 
+            while(!selected);
+        }
+        
+        else
+        {
+            System.out.println("The street is empty.");
+        }
+    }
+    
+    // Display all options
+    public String displayOption()
+    {
+        // Build up the option easily without typing string in lengthy line
+        StringBuilder option = new StringBuilder();
+        
+        // Choosing the options to change details by name, weeks or both.
+        // Otherwise, cancel change
+        
+        option.append("Choice of changing details.").append("\n");
+        option.append("(0) Cancel Change").append("\n");
+        option.append("(1) Name of Owner").append("\n");
+        option.append("(2) Number of Weeks on Staying").append("\n");
+        option.append("(3) Both").append("\n");
+        
+        return option.toString();
+    }
+    
+    // Handle integer inputs
+    public int handleInt()
+    {
+        int input = 0;
+        // Assuming this continue in a loop until the user has entered the integer
+        boolean loop = true;
+        // Continue this loop until the user has entered the input correctly
+        while(loop)
+        {
+            // Try and catch error if the user has not entered the integer
+            try
+            {
+                input = scan.nextInt();
+                loop = false;
             }
-        } 
-        while(choose != 0 || choose != 1 || choose != 2 || choose != 3);
+            catch(InputMismatchException e)
+            {
+                System.out.println("Try again. Wrong input.");
+                scan.nextLine();
+            }
+        }
+        return input;
     }
 }

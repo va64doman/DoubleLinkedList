@@ -102,7 +102,7 @@ public class NeighbourNode
         StringBuilder info = new StringBuilder();
         
         info.append("Name of owner: ").append(name).append("\n");
-        info.append("Number of weeks of staying: ").append(week).append("\n\n");
+        info.append("Number of weeks of staying: ").append(week).append("\n");
         
         return info.toString();
     }
