@@ -228,10 +228,14 @@ public class DoubleLinkedList
                         // Decrement size by 1
                         size--;
                         found++;
+                        System.out.println("Delete neighbour successfully.");
                     }
 
-                    // Set pointer to the next neighbour
-                    pointer = pointer.getNextNeighbour();
+                    if(count != size)
+                    {
+                        // Set pointer to the next neighbour
+                        pointer = pointer.getNextNeighbour();
+                    }
                 }
                 // If there are no position found, display this message
                 if(found == 0)
