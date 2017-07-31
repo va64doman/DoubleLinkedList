@@ -318,6 +318,7 @@ public class DoubleLinkedList
     // Select the neighbour's position to confirm change
     public void changeNeighbourDetail(int pos)
     {
+        // Use this boolean if the user has not selected one of the options
         boolean selected = false;
         if(!isEmpty())
         {
