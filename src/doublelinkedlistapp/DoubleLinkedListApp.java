@@ -10,9 +10,6 @@ package doublelinkedlistapp;
  * @author Van Do
  */
 
-// Using user's input to select options
-import java.util.*;
-
 // This main class contains modular programming approach view
 public class DoubleLinkedListApp 
 {
@@ -21,7 +18,10 @@ public class DoubleLinkedListApp
      */
     public static void main(String[] args) 
     {
-        
+        // Display the application from Modular class
+        System.out.println("Neighbour Double Linked List");
+        Modular module = new Modular();
+        module.selectOption();
     }
     
 }
