@@ -10,7 +10,7 @@ package doublelinkedlistapp;
  * @author Van Do
  */
 
-// This main class contains modular programming approach view
+// This main class contains modular programming approach view for storing neighbours
 public class DoubleLinkedListApp 
 {
     /**

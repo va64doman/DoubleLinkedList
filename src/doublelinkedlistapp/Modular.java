@@ -26,12 +26,12 @@ public class Modular
     private int choice;
     // This is for handling integer input error
     private int input;
-    
+    // Display option to edit linked list
     public void selectOption()
     {
+        // Initialise new Scanner and DoubleLinkedList object
         scan = new Scanner(System.in);
         list = new DoubleLinkedList();
-        
         // Do this function while the user wants to keep using this app
         do
         {
@@ -84,6 +84,7 @@ public class Modular
                     position = handleInt();
                     list.changeNeighbourDetail(position);
                     break;
+                // If 8, get the size of neighbour
                 case 8:
                     System.out.println("Total number of neighbours: " + list.getSize());
                     break;
@@ -92,20 +93,18 @@ public class Modular
                     System.out.println("Invalid input.");
                     break;
             }
-            
             // Display this message if wanted to continue this app
-            System.out.println("Do you want to continue? Yes (1) or No (2)");
-            choice = scan.nextInt();
+            System.out.println("Do you want to continue? Yes (1) or No (Any number)");
+            choice = handleInt();
         }
         while(choice == 1);
     }
-    
     // Display all options
     public String displayOption()
     {
         // Build up the option easily without typing string in lengthy line
         StringBuilder option = new StringBuilder();
-        
+        // Append all string into one
         option.append("Select options.").append("\n");
         option.append("1. Insert Neighbour at Beginning.").append("\n");
         option.append("2. Insert Neighbour at End.").append("\n");
@@ -115,10 +114,9 @@ public class Modular
         option.append("6. Display All Neighbours.").append("\n");
         option.append("7. Change Neighbour's Details at Position.").append("\n");
         option.append("8. Get size in the street.");
-        
+        // Display options
         return option.toString();
     }
-    
     // Handle integer inputs
     public int handleInt()
     {

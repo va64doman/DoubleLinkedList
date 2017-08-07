@@ -12,7 +12,6 @@ package doublelinkedlistapp;
 
 // Using user's input to select options to change neighbour's detail
 import java.util.*;
-
 // This class will contain implemented double linked list
 // This allows to hold the structure of the neighbours
 public class DoubleLinkedList 
@@ -31,7 +30,6 @@ public class DoubleLinkedList
     // Initialise scanner to ensure most methods have scanner to be enable
     // to input data in the variable
     Scanner scan = new Scanner(System.in);
-    
     // Null constructor to initialise the list
     public DoubleLinkedList()
     {
@@ -41,19 +39,16 @@ public class DoubleLinkedList
         // Initialise size to 0
         size = 0;
     }
-    
     // Check if the list is empty by checking the start is null
     public boolean isEmpty()
     {
         return start == null;
     }
-    
     // Return the size of the list
     public int getSize()
     {
         return size;
     }
-    
     // Add neighbour at the beginning of the list
     public void addNeighbourAtStart(String name)
     {
@@ -78,7 +73,6 @@ public class DoubleLinkedList
         // Increment size by 1
         size++;
     }
-    
     // Add neighbour at the end of the list
     public void addNeighbourAtEnd(String name)
     {
@@ -103,7 +97,6 @@ public class DoubleLinkedList
         // Increment size by 1
         size++;
     }
-    
     // Insert new neighbour if live between existing neighbours at this position
     public void addNeighbourInBetween(String name, int pos)
     {
@@ -163,7 +156,6 @@ public class DoubleLinkedList
             size++;
         }
     }
-    
     // Delete the neighbour at this position due to destruction or empty house
     public void deleteNeighbourAtPosition(int pos)
     {
@@ -230,7 +222,9 @@ public class DoubleLinkedList
                         found++;
                         System.out.println("Delete neighbour successfully.");
                     }
-
+                    // To avoid null exception, check if count is not equal to size
+                    // The next neighbour at the end is null
+                    // This condition is only used in deletion of node
                     if(count != size)
                     {
                         // Set pointer to the next neighbour
@@ -252,7 +246,6 @@ public class DoubleLinkedList
         // Display all neighbours after deleted
         displayAll();
     }
-    
     // Display only to this neighbour by position
     public void displayNeighbour(int pos)
     {
@@ -286,7 +279,6 @@ public class DoubleLinkedList
             System.out.println("The street is empty.");
         }
     }
-    
     // Display all neighbours
     public void displayAll()
     {
@@ -317,7 +309,6 @@ public class DoubleLinkedList
             System.out.println("The street is empty.");
         }
     }
-    
     // Change neighbour's detail by name, duration of living or all
     // Select the neighbour's position to confirm change
     public void changeNeighbourDetail(int pos)
@@ -377,7 +368,6 @@ public class DoubleLinkedList
                                 {
                                     pointer.setName(owner);
                                     displayNeighbour(pos);
-                                    //System.out.println("This neighbour's new name: " + pointer.getName());
                                 }
                                 pointer = pointer.getNextNeighbour();
                             }
@@ -425,7 +415,6 @@ public class DoubleLinkedList
                                 {
                                     pointer.setWeek(week);
                                     displayNeighbour(pos);
-                                    //System.out.println("This neighbour's new name: " + pointer.getWeek());
                                 }
                                 pointer = pointer.getNextNeighbour();
                             }
@@ -483,8 +472,6 @@ public class DoubleLinkedList
                                     pointer.setName(owner);
                                     pointer.setWeek(week);
                                     displayNeighbour(pos);
-                                    //System.out.println("New Record for This Neighbour");
-                                    //System.out.println(pointer.printNeighbour());
                                 }
                                 pointer = pointer.getNextNeighbour();
                             }
@@ -504,31 +491,27 @@ public class DoubleLinkedList
             } 
             while(!selected);
         }
-        
+        // If empty, display message
         else
         {
             System.out.println("The street is empty.");
         }
     }
-    
     // Display all options
     public String displayOption()
     {
         // Build up the option easily without typing string in lengthy line
         StringBuilder option = new StringBuilder();
-        
         // Choosing the options to change details by name, weeks or both.
         // Otherwise, cancel change
-        
         option.append("Choice of changing details.").append("\n");
         option.append("(0) Cancel Change").append("\n");
         option.append("(1) Name of Owner").append("\n");
         option.append("(2) Number of Weeks on Staying").append("\n");
-        option.append("(3) Both").append("\n");
-        
+        option.append("(3) Both");
+        // Return the stringbuilder as string
         return option.toString();
     }
-    
     // Handle integer inputs
     public int handleInt()
     {
