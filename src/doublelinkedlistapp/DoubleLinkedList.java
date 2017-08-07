@@ -141,6 +141,8 @@ public class DoubleLinkedList
                     // Set tempting's previous neighbour as new neighbour
                     tempting.setPrevious(neighbour);
                     found++;
+                    // Increment size by 1
+                    size++;
                 }
                 // Move on to the next neighbour
                 pointer = pointer.getNextNeighbour();
@@ -152,8 +154,6 @@ public class DoubleLinkedList
             }
             // Display all neighbours after added
             displayAll();
-            // Increment size by 1
-            size++;
         }
     }
     // Delete the neighbour at this position due to destruction or empty house
