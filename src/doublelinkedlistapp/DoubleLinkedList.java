@@ -109,6 +109,12 @@ public class DoubleLinkedList
         {
             addNeighbourAtStart(name);
         }
+        // If user selected the end of the position, set this neighbour at
+        // the end of the list
+        else if(pos == size + 1)
+        {
+            addNeighbourAtEnd(name);
+        }
         // If position not 1, do this function
         else
         {
