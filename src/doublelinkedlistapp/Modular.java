@@ -33,15 +33,13 @@ public class Modular
         scan = new Scanner(System.in);
         list = new DoubleLinkedList();
         // Do this function while the user wants to keep using this app
-        do
-        {
+        do{
             // Print out all options
             System.out.println(displayOption());
             // User choosing an option
             int option = handleInt();
             // Using switch case to decide multiple options
-            switch(option)
-            {
+            switch(option){
                 // If 1, insert neighbour at the beginning
                 case 1:
                     System.out.println("Enter your name for owning the beginning neighbour.");
@@ -96,8 +94,7 @@ public class Modular
             // Display this message if wanted to continue this app
             System.out.println("Do you want to continue? Yes (1) or No (Any number)");
             choice = handleInt();
-        }
-        while(choice == 1);
+        }while(choice == 1);
     }
     // Display all options
     public String displayOption()
@@ -123,16 +120,12 @@ public class Modular
         // Assuming this continue in a loop until the user has entered the integer
         boolean loop = true;
         // Continue this loop until the user has entered the input correctly
-        while(loop)
-        {
+        while(loop){
             // Try and catch error if the user has not entered the integer
-            try
-            {
+            try{
                 input = scan.nextInt();
                 loop = false;
-            }
-            catch(InputMismatchException e)
-            {
+            }catch(InputMismatchException e){
                 System.out.println("Try again. Wrong input.");
                 scan.nextLine();
             }

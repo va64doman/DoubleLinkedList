@@ -55,14 +55,11 @@ public class DoubleLinkedList
         // Previous neighbour and next neighbour are null to initialise
         NeighbourNode neighbour = new NeighbourNode(name, 0, null, null);
         // Check if the beginning is null, then make this neighbour the beginning and end
-        if(start == null)
-        {
+        // Otherwise, make the beginning neighbour second and the new neighbour first
+        if(start == null){
             start = neighbour;
             end = start;
-        }
-        // Otherwise, make the beginning neighbour second and the new neighbour first
-        else
-        {
+        }else{
             start.setPrevious(neighbour);
             neighbour.setNext(start);
             // Change new front neighbour
@@ -79,14 +76,11 @@ public class DoubleLinkedList
         // Previous neighbour and next neighbour are null to initialise
         NeighbourNode neighbour = new NeighbourNode(name, 0, null, null);
         // Check if the beginning is null, then make this neighbour the beginning and end
-        if(start == null)
-        {
+        // Otherwise, make the end neighbour second-last and the new neighbour last
+        if(start == null){
             start = neighbour;
             end = start;
-        }
-        // Otherwise, make the end neighbour second-last and the new neighbour last
-        else
-        {
+        }else{
             neighbour.setPrevious(end);
             end.setNext(neighbour);
             // Change new end neighbour
@@ -105,35 +99,28 @@ public class DoubleLinkedList
         NeighbourNode neighbour = new NeighbourNode(name, 0, null, null);
         // If user selected the first position, set this neighbour
         // at the start of the list
-        if(pos == 1)
-        {
-            addNeighbourAtStart(name);
-        }
         // If user selected the end of the position, set this neighbour at
         // the end of the list
-        else if(pos == size + 1)
-        {
+        if(pos == 1){
+            addNeighbourAtStart(name);
+        }else if(pos == size + 1){
             addNeighbourAtEnd(name);
-        }
-        // If position not 1, do this function
-        else
-        {
+        }else{
+            // If position not 1, do this function
             // Initialise pointer as start to search through the list
             // Until the position has been reached
             NeighbourNode pointer = start;
             // Keep going until count reached to size, count initialises to 2
             // because the condition will be selected if the user has not
             // selected the first neighbour
-            for(int count = 2; count <= size; count++)
-            {
+            for(int count = 2; count <= size; count++){
                 // If count is equal to position, set this position
                 // and make the neighbour from this position as previous
                 // neighbour from new neighbour and the neighbour after the
                 // previous neighbour as next neighbour from new neighbour
                 // for example, 1 and 3 are current neighbours
                 // if 2 is added between them, the list will be 1 2 3
-                if(count == pos)
-                {
+                if(count == pos){
                     // Initialise tempting using the next neighbour from pointer
                     NeighbourNode tempting = pointer.getNextNeighbour();
                     // Set the pointer's next neighbour as this new neighbour
@@ -154,8 +141,7 @@ public class DoubleLinkedList
                 pointer = pointer.getNextNeighbour();
             }
             // If there are no position found, display this message
-            if(found == 0)
-            {
+            if(found == 0){
                 System.out.println("Unsuccessfully added. Please check size of neighbour.");
             }
             // Display all neighbours after added
@@ -167,22 +153,17 @@ public class DoubleLinkedList
     {
         found = 0;
         // If list is not empty, do this function
-        if(!isEmpty())
-        {
+        if(!isEmpty()){
             // If user selected the first neighbour
-            if(pos == 1)
-            {
+            if(pos == 1){
                 // If there is only one neighbour, make start and end to null and
                 // size to 0
-                if(size == 1)
-                {
+                if(size == 1){
                     start = null;
                     end = null;
                     size = 0;
-                }
-                // If there are more than 1, do this function
-                else
-                {
+                }else{
+                    // If there are more than 1, do this function
                     // Get the next neighbour after starting neighbour
                     start = start.getNextNeighbour();
                     // Set the next neighbour's previous neighbour to null
@@ -190,29 +171,23 @@ public class DoubleLinkedList
                     // Decrement size by 1
                     size--;
                 }
-            }
-            // If user selected the end of the neighbour
-            else if(pos == size)
-            {
+            }else if(pos == size){
+                // If user selected the end of the neighbour
                 // Set end neighbour by the old end neighbour's previous neighbour
                 end = end.getPreviousNeighbour();
                 // Set new end neighbour's next neighbour to null
                 end.setNext(null);
                 // Decrement size by 1
                 size--;
-            }
-            // If position is in between the start and end
-            else
-            {
+            }else{
+                // If position is in between the start and end
                 // Move to the next neighbour if the selection is not at the start
                 NeighbourNode pointer = start.getNextNeighbour();
 
                 // Keep going until count reaches size
-                for(int count = 2; count <= size; count++)
-                {
+                for(int count = 2; count <= size; count++){
                     // If count is equal to position
-                    if(count == pos)
-                    {
+                    if(count == pos){
                         // Initialise previous by pointer's previous neighbour
                         NeighbourNode previous = pointer.getPreviousNeighbour();
                         // Initialise next by pointer's next neighbour
@@ -231,22 +206,18 @@ public class DoubleLinkedList
                     // To avoid null exception, check if count is not equal to size
                     // The next neighbour at the end is null
                     // This condition is only used in deletion of node
-                    if(count != size)
-                    {
+                    if(count != size){
                         // Set pointer to the next neighbour
                         pointer = pointer.getNextNeighbour();
                     }
                 }
                 // If there are no position found, display this message
-                if(found == 0)
-                {
+                if(found == 0){
                     System.out.println("This neighbour has not existed or found.");
                 }
             }
-        }
-        // If so, display this message
-        else
-        {
+        }else{
+            // If so, display this message
             System.out.println("The street is empty.");
         }
         // Display all neighbours after deleted
@@ -257,13 +228,11 @@ public class DoubleLinkedList
     {
         found = 0;
         // If list is not empty, do this function
-        if(!isEmpty())
-        {
+        if(!isEmpty()){
             // Initialise pointer at start of list
             NeighbourNode pointer = start;
             // Keep going until count reaches size
-            for(int count = 1; count <= size; count++)
-            {
+            for(int count = 1; count <= size; count++){
                 // If count is equal to position
                 if(count == pos)
                 {
@@ -274,14 +243,11 @@ public class DoubleLinkedList
                 pointer = pointer.getNextNeighbour();
             }
             // If there are no position found, display this message
-            if(found == 0)
-            {
+            if(found == 0){
                 System.out.println("This neighbour has not existed or found.");
             }
-        }
-        // If size of list is 0, display this message
-        else
-        {
+        }else{
+            // If size of list is 0, display this message
             System.out.println("The street is empty.");
         }
     }
@@ -292,8 +258,7 @@ public class DoubleLinkedList
         System.out.println();
         System.out.println("Displaying all neighbours");
         // If list is not empty, do this function
-        if(!isEmpty())
-        {
+        if(!isEmpty()){
             // Move to the next neighbour if the selection is not at the start
             NeighbourNode pointer = start;
             // Print the start neighbour's details
@@ -301,17 +266,14 @@ public class DoubleLinkedList
             // Set pointer to start's next neighbour
             pointer = start.getNextNeighbour();
             // Continue this loop until the next neighbour is not null
-            while(pointer != null)
-            {
+            while(pointer != null){
                 // Print the next neighbour's details
                 System.out.println(pointer.printNeighbour());
                 // Set pointer as this pointer's next neighbour
                 pointer = pointer.getNextNeighbour();
             }
-        }
-        // If so, display this message
-        else
-        {
+        }else{
+            // If so, display this message
             System.out.println("The street is empty.");
         }
     }
@@ -321,18 +283,15 @@ public class DoubleLinkedList
     {
         // Use this boolean if the user has not selected one of the options
         boolean selected = false;
-        if(!isEmpty())
-        {
+        if(!isEmpty()){
             // Do this function while choose is not selected in the option
-            do
-            {
+            do{
                 // Display option for changing data
                 System.out.println(displayOption());
                 // Set choose as Scanner's object as integer
                 choose = handleInt();
                 // Choose a selection for editing neighbour's details
-                switch(choose)
-                {
+                switch(choose){
                     // If choose is 0, exit this method
                     case 0:
                         System.out.println("Cancelling change.");
@@ -345,11 +304,9 @@ public class DoubleLinkedList
                         // Initialise the pointer as the start of the list
                         NeighbourNode pointer = start;
                         // Keep going until count reaches to size
-                        for(int count = 1; count <= size; count++)
-                        {
+                        for(int count = 1; count <= size; count++){
                             // If count is equal to position, display this neighbour's old name
-                            if(count == pos)
-                            {
+                            if(count == pos){
                                 System.out.println("This neighbour's old name: " + pointer.getName());
                                 // Increment found by 1
                                 found++;
@@ -358,8 +315,7 @@ public class DoubleLinkedList
                             pointer = pointer.getNextNeighbour();
                         }
                         // If position has been found, proceed to this step
-                        if(found > 0)
-                        {
+                        if(found > 0){
                             // Re-initialise pointer as starting neighbour
                             pointer = start;
                             // User inputs new name for this neighbour
@@ -368,19 +324,15 @@ public class DoubleLinkedList
                             String owner = scan.next();
                             // As it already been found, set the name for this neighbour
                             // as its new name
-                            for(int count = 1; count <= size; count++)
-                            {
-                                if(count == pos)
-                                {
+                            for(int count = 1; count <= size; count++){
+                                if(count == pos){
                                     pointer.setName(owner);
                                     displayNeighbour(pos);
                                 }
                                 pointer = pointer.getNextNeighbour();
                             }
-                        }
-                        // If neighbour is not found, display this message
-                        else
-                        {
+                        }else{
+                            // If neighbour is not found, display this message
                             System.out.println("This neighbour has not been existed or found.");
                         }
                         selected = true;
@@ -392,11 +344,9 @@ public class DoubleLinkedList
                         // Initialise the pointer as the start of the list
                         pointer = start;
                         // Keep going until count reaches to size
-                        for(int count = 1; count <= size; count++)
-                        {
+                        for(int count = 1; count <= size; count++){
                             // If count is equal to position, display this neighbour's old name
-                            if(count == pos)
-                            {
+                            if(count == pos){
                                 System.out.println("This neighbour's old duration of stay in weeks: " + pointer.getWeek());
                                 // Increment found by 1
                                 found++;
@@ -405,8 +355,7 @@ public class DoubleLinkedList
                             pointer = pointer.getNextNeighbour();
                         }
                         // If position has been found, proceed to this step
-                        if(found > 0)
-                        {
+                        if(found > 0){
                             // Re-initialise pointer as starting neighbour
                             pointer = start;
                             // User inputs new weeks for this neighbour
@@ -415,19 +364,15 @@ public class DoubleLinkedList
                             int week = handleInt();
                             // As it already been found, set the week for this neighbour
                             // as its new week
-                            for(int count = 1; count <= size; count++)
-                            {
-                                if(count == pos)
-                                {
+                            for(int count = 1; count <= size; count++){
+                                if(count == pos){
                                     pointer.setWeek(week);
                                     displayNeighbour(pos);
                                 }
                                 pointer = pointer.getNextNeighbour();
                             }
-                        }
-                        // If neighbour is not found, display this message
-                        else
-                        {
+                        }else{
+                            // If neighbour is not found, display this message
                             System.out.println("This neighbour has not been existed or found.");
                         }
                         selected = true;
@@ -439,11 +384,9 @@ public class DoubleLinkedList
                         // Initialise the pointer as the start of the list
                         pointer = start;
                         // Keep going until count reaches to size
-                        for(int count = 1; count <= size; count++)
-                        {
+                        for(int count = 1; count <= size; count++){
                             // If count is equal to position, display this neighbour's old name
-                            if(count == pos)
-                            {
+                            if(count == pos){
                                 // Display this neighbour's old record
                                 System.out.println("Old Record for This Neighbour");
                                 System.out.println(pointer.printNeighbour());
@@ -454,8 +397,7 @@ public class DoubleLinkedList
                             pointer = pointer.getNextNeighbour();
                         }
                         // If position has been found, proceed to this step
-                        if(found > 0)
-                        {
+                        if(found > 0){
                             // Re-initialise pointer as starting neighbour
                             pointer = start;
                             // Neighbour's name
@@ -470,21 +412,17 @@ public class DoubleLinkedList
                             int week = handleInt();
                             // As it already been found, set the week for this neighbour
                             // as its new week
-                            for(int count = 1; count <= size; count++)
-                            {
+                            for(int count = 1; count <= size; count++){
                                 // Change both details and display new details
-                                if(count == pos)
-                                {
+                                if(count == pos){
                                     pointer.setName(owner);
                                     pointer.setWeek(week);
                                     displayNeighbour(pos);
                                 }
                                 pointer = pointer.getNextNeighbour();
                             }
-                        }
-                        // If neighbour is not found, display this message
-                        else
-                        {
+                        }else{
+                            // If neighbour is not found, display this message
                             System.out.println("This neighbour has not been existed or found.");
                         }
                         selected = true;
@@ -494,12 +432,9 @@ public class DoubleLinkedList
                         System.out.println("Invalid input. Try again.");
                         break; 
                 }
-            } 
-            while(!selected);
-        }
-        // If empty, display message
-        else
-        {
+            }while(!selected);
+        }else{
+            // If empty, display message
             System.out.println("The street is empty.");
         }
     }
@@ -525,16 +460,12 @@ public class DoubleLinkedList
         // Assuming this continue in a loop until the user has entered the integer
         boolean loop = true;
         // Continue this loop until the user has entered the input correctly
-        while(loop)
-        {
+        while(loop){
             // Try and catch error if the user has not entered the integer
-            try
-            {
+            try{
                 input = scan.nextInt();
                 loop = false;
-            }
-            catch(InputMismatchException e)
-            {
+            }catch(InputMismatchException e){
                 System.out.println("Try again. Wrong input.");
                 scan.nextLine();
             }
