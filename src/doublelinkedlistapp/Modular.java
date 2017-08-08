@@ -16,8 +16,7 @@ import java.util.*;
 
 // This class will be using modular programming approach
 // This way to make the code cleaner
-public class Modular 
-{
+public class Modular {
     // All methods must include scanner to allow user to input data
     private Scanner scan;
     // Initialise this object to access the methods from DoubleLinkedList class

@@ -12,8 +12,7 @@ package doublelinkedlistapp;
 
 // This class will be the node of the double linked-list
 // It holds neighbour's details
-public class NeighbourNode 
-{
+public class NeighbourNode {
     // Name of owner of resident
     private String name;
     // Number of weeks stayed at home

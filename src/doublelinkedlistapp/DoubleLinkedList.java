@@ -14,8 +14,7 @@ package doublelinkedlistapp;
 import java.util.*;
 // This class will contain implemented double linked list
 // This allows to hold the structure of the neighbours
-public class DoubleLinkedList 
-{
+public class DoubleLinkedList {
     // Start is a variable that contains the first neighbour on the list
     private NeighbourNode start;
     // End is a variable that contains the last neighbour on the list

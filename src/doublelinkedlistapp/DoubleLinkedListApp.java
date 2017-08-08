@@ -11,8 +11,7 @@ package doublelinkedlistapp;
  */
 
 // This main class contains modular programming approach view for storing neighbours
-public class DoubleLinkedListApp 
-{
+public class DoubleLinkedListApp {
     /**
      * @param args the command line arguments
      */
