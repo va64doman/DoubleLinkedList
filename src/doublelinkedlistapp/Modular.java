@@ -26,8 +26,7 @@ public class Modular {
     // This is for handling integer input error
     private int input;
     // Display option to edit linked list
-    public void selectOption()
-    {
+    public void selectOption(){
         // Initialise new Scanner and DoubleLinkedList object
         scan = new Scanner(System.in);
         list = new DoubleLinkedList();
@@ -96,8 +95,7 @@ public class Modular {
         }while(choice == 1);
     }
     // Display all options
-    public String displayOption()
-    {
+    public String displayOption(){
         // Build up the option easily without typing string in lengthy line
         StringBuilder option = new StringBuilder();
         // Append all string into one
@@ -114,8 +112,7 @@ public class Modular {
         return option.toString();
     }
     // Handle integer inputs
-    public int handleInt()
-    {
+    public int handleInt(){
         // Assuming this continue in a loop until the user has entered the integer
         boolean loop = true;
         // Continue this loop until the user has entered the input correctly

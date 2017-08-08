@@ -30,8 +30,7 @@ public class DoubleLinkedList {
     // to input data in the variable
     Scanner scan = new Scanner(System.in);
     // Null constructor to initialise the list
-    public DoubleLinkedList()
-    {
+    public DoubleLinkedList(){
         // Initialise start and end to null
         start = null;
         end = null;
@@ -39,18 +38,15 @@ public class DoubleLinkedList {
         size = 0;
     }
     // Check if the list is empty by checking the start is null
-    public boolean isEmpty()
-    {
+    public boolean isEmpty(){
         return start == null;
     }
     // Return the size of the list
-    public int getSize()
-    {
+    public int getSize(){
         return size;
     }
     // Add neighbour at the beginning of the list
-    public void addNeighbourAtStart(String name)
-    {
+    public void addNeighbourAtStart(String name){
         // Previous neighbour and next neighbour are null to initialise
         NeighbourNode neighbour = new NeighbourNode(name, 0, null, null);
         // Check if the beginning is null, then make this neighbour the beginning and end
@@ -70,8 +66,7 @@ public class DoubleLinkedList {
         size++;
     }
     // Add neighbour at the end of the list
-    public void addNeighbourAtEnd(String name)
-    {
+    public void addNeighbourAtEnd(String name){
         // Previous neighbour and next neighbour are null to initialise
         NeighbourNode neighbour = new NeighbourNode(name, 0, null, null);
         // Check if the beginning is null, then make this neighbour the beginning and end
@@ -91,8 +86,7 @@ public class DoubleLinkedList {
         size++;
     }
     // Insert new neighbour if live between existing neighbours at this position
-    public void addNeighbourInBetween(String name, int pos)
-    {
+    public void addNeighbourInBetween(String name, int pos){
         found = 0;
         // Previous neighbour and next neighbour are null to initialise
         NeighbourNode neighbour = new NeighbourNode(name, 0, null, null);
@@ -148,8 +142,7 @@ public class DoubleLinkedList {
         }
     }
     // Delete the neighbour at this position due to destruction or empty house
-    public void deleteNeighbourAtPosition(int pos)
-    {
+    public void deleteNeighbourAtPosition(int pos){
         found = 0;
         // If list is not empty, do this function
         if(!isEmpty()){
@@ -223,8 +216,7 @@ public class DoubleLinkedList {
         displayAll();
     }
     // Display only to this neighbour by position
-    public void displayNeighbour(int pos)
-    {
+    public void displayNeighbour(int pos){
         found = 0;
         // If list is not empty, do this function
         if(!isEmpty()){
@@ -251,8 +243,7 @@ public class DoubleLinkedList {
         }
     }
     // Display all neighbours
-    public void displayAll()
-    {
+    public void displayAll(){
         // Display titles
         System.out.println();
         System.out.println("Displaying all neighbours");
@@ -278,8 +269,7 @@ public class DoubleLinkedList {
     }
     // Change neighbour's detail by name, duration of living or all
     // Select the neighbour's position to confirm change
-    public void changeNeighbourDetail(int pos)
-    {
+    public void changeNeighbourDetail(int pos){
         // Use this boolean if the user has not selected one of the options
         boolean selected = false;
         if(!isEmpty()){
@@ -438,8 +428,7 @@ public class DoubleLinkedList {
         }
     }
     // Display all options
-    public String displayOption()
-    {
+    public String displayOption(){
         // Build up the option easily without typing string in lengthy line
         StringBuilder option = new StringBuilder();
         // Choosing the options to change details by name, weeks or both.
@@ -453,8 +442,7 @@ public class DoubleLinkedList {
         return option.toString();
     }
     // Handle integer inputs
-    public int handleInt()
-    {
+    public int handleInt(){
         int input = 0;
         // Assuming this continue in a loop until the user has entered the integer
         boolean loop = true;
