@@ -12,7 +12,8 @@ package doublelinkedlistapp;
 
 // This class will be the node of the double linked-list
 // It holds neighbour's details
-public class NeighbourNode {
+public class NeighbourNode 
+{
     // Name of owner of resident
     private String name;
     // Number of weeks stayed at home
@@ -32,7 +33,8 @@ public class NeighbourNode {
         week = 0;
     }
     // Parameterized Constructor for storing new data by those values
-    public NeighbourNode(String owner, int span, NeighbourNode before, NeighbourNode after){
+    public NeighbourNode(String owner, int span, NeighbourNode before, NeighbourNode after)
+    {
         name = owner;
         week = span;
         previous = before;
@@ -40,42 +42,51 @@ public class NeighbourNode {
     }
     // Getters
     // Return name of the resident
-    public String getName(){
+    public String getName()
+    {
         return name;
     }
     // Return the length of being resident of home by weeks
-    public int getWeek(){
+    public int getWeek()
+    {
         return week;
     }
     // Return next neighbour
-    public NeighbourNode getNextNeighbour(){
+    public NeighbourNode getNextNeighbour()
+    {
         return next;
     }
     // Return previous neighbour
-    public NeighbourNode getPreviousNeighbour(){
+    public NeighbourNode getPreviousNeighbour()
+    {
         return previous;
     }
     // Setters
     // Change this resident's name if being replaced
-    public void setName(String owner){
+    public void setName(String owner)
+    {
         name = owner;
     }
     // Change the length of being resident of this home by extending weeks
-    public void setWeek(int span){
+    public void setWeek(int span)
+    {
         week = span;
     }
     // Change the next neighbour if added between this home
     // and existing neighbour after this home
-    public void setNext(NeighbourNode after){
+    public void setNext(NeighbourNode after)
+    {
         next = after;
     }
     // Change the previous neighbour if added between this home
     // and existing neighbour before this home
-    public void setPrevious(NeighbourNode before){
+    public void setPrevious(NeighbourNode before)
+    {
         previous = before;
     }
     // Return all neighbour's details
-    public String printNeighbour(){
+    public String printNeighbour()
+    {
         // Build up the info easily without typing string in lengthy line
         StringBuilder info = new StringBuilder();
         // Build up details

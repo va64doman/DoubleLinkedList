@@ -16,7 +16,8 @@ import java.util.*;
 
 // This class will be using modular programming approach
 // This way to make the code cleaner
-public class Modular {
+public class Modular 
+{
     // All methods must include scanner to allow user to input data
     private Scanner scan;
     // Initialise this object to access the methods from DoubleLinkedList class
@@ -26,18 +27,22 @@ public class Modular {
     // This is for handling integer input error
     private int input;
     // Display option to edit linked list
-    public void selectOption(){
+    public void selectOption()
+    {
         // Initialise new Scanner and DoubleLinkedList object
-        scan = new Scanner(System.in);
+        // Delimit new line character to set string as the whole line input
+        scan = new Scanner(System.in).useDelimiter("[\r\n]");
         list = new DoubleLinkedList();
         // Do this function while the user wants to keep using this app
-        do{
+        do
+        {
             // Print out all options
             System.out.println(displayOption());
             // User choosing an option
             int option = handleInt();
             // Using switch case to decide multiple options
-            switch(option){
+            switch(option)
+            {
                 // If 1, insert neighbour at the beginning
                 case 1:
                     System.out.println("Enter your name for owning the beginning neighbour.");
@@ -92,10 +97,12 @@ public class Modular {
             // Display this message if wanted to continue this app
             System.out.println("Do you want to continue? Yes (1) or No (Any number)");
             choice = handleInt();
-        }while(choice == 1);
+        }
+        while(choice == 1);
     }
     // Display all options
-    public String displayOption(){
+    public String displayOption()
+    {
         // Build up the option easily without typing string in lengthy line
         StringBuilder option = new StringBuilder();
         // Append all string into one
@@ -112,16 +119,22 @@ public class Modular {
         return option.toString();
     }
     // Handle integer inputs
-    public int handleInt(){
+    public int handleInt()
+    {
         // Assuming this continue in a loop until the user has entered the integer
         boolean loop = true;
         // Continue this loop until the user has entered the input correctly
-        while(loop){
+        while(loop)
+        {
             // Try and catch error if the user has not entered the integer
-            try{
+            try
+            {
                 input = scan.nextInt();
+                System.out.println();
                 loop = false;
-            }catch(InputMismatchException e){
+            }
+            catch(InputMismatchException e)
+            {
                 System.out.println("Try again. Wrong input.");
                 scan.nextLine();
             }
